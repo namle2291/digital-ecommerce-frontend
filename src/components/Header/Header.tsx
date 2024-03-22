@@ -2,6 +2,7 @@ import { FaPhoneVolume, FaSearch } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 
 import logo from "../../assets/img/logo.png";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -42,10 +43,10 @@ function Header() {
             <div className="w-[40px] h-[40px] mr-[8px] rounded-full flex justify-center items-center bg-main_color text-white">
               <FaCartShopping className="text-[20px]" />
             </div>
-            <div>
+            <Link to={"/cart"}>
               <div className="uppercase font-semibold">Your cart</div>
               <div className="extra">1 item</div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

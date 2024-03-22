@@ -1,6 +1,8 @@
 import React from "react";
 import TopHeader from "../../components/Header/TopHeader";
 import Header from "../../components/Header/Header";
+import Navbar from "../../components/Navbar/Navbar";
+import { Outlet } from "react-router-dom";
 
 type DefaultLayoutType = {
   children?: JSX.Element;
@@ -11,7 +13,12 @@ function DefaultLayout({ children }: DefaultLayoutType) {
     <div>
       <TopHeader />
       <Header />
-      {children}
+      <Navbar />
+      <div className="wrapper">
+        <div className="py-[20px]">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 }

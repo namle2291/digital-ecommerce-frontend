@@ -11,6 +11,20 @@ module.exports = {
       fontFamily: {
         poppins: "Poppins",
       },
+      animation: {
+        slide_bottom:
+          "slide-bottom 0.2s ease-out both",
+      },
+      keyframes: {
+        "slide-bottom": {
+          "0%": {
+            padding: "0px 20px",
+          },
+          "100%": {
+            padding: "12px 20px",
+          },
+        },
+      },
     },
   },
   plugins: [],

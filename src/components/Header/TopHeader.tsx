@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 function TopHeader() {
   return (
@@ -8,18 +8,18 @@ function TopHeader() {
           <span className="px-[12px]">Welcome to our Shop!</span>
         </div>
         <div>
-          <a
-            href="home"
+          <Link
+            to="/wishlist"
             className="px-[10px] cursor-pointer hover:text-main_color"
           >
             My Wishlist
-          </a>
-          <a
-            href="home"
+          </Link>
+          <Link
+            to="/account"
             className="px-[10px] cursor-pointer hover:text-main_color"
           >
             My Account
-          </a>
+          </Link>
         </div>
       </div>
     </div>
