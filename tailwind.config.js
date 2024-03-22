@@ -6,6 +6,10 @@ module.exports = {
       colors: {
         main_color: "var(--main_color)",
         grey_color: "var(--grey_color)",
+        text_grey: "var(--text_grey)",
+      },
+      fontFamily: {
+        poppins: "Poppins",
       },
     },
   },

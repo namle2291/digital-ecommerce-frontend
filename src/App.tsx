@@ -5,8 +5,10 @@ import DefaultLayout from "./layouts/Home/DefaultLayout";
 
 function App() {
   return (
-    <div className="App h-[1000px]">
-      <DefaultLayout></DefaultLayout>
+    <div className="font-poppins h-[1000px]">
+      <DefaultLayout>
+        <Home />
+      </DefaultLayout>
     </div>
   );
 }

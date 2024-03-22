@@ -5,13 +5,19 @@ function TopHeader() {
     <div className="bg-grey_color py-[10px]">
       <div className="wrapper flex justify-between  text-[12px]">
         <div>
-          <span className="px-[12px]">Welcome to my shop!</span>
+          <span className="px-[12px]">Welcome to our Shop!</span>
         </div>
         <div>
-          <a href="" className="px-[10px]">
+          <a
+            href="home"
+            className="px-[10px] cursor-pointer hover:text-main_color"
+          >
             My Wishlist
           </a>
-          <a href="" className="px-[10px]">
+          <a
+            href="home"
+            className="px-[10px] cursor-pointer hover:text-main_color"
+          >
             My Account
           </a>
         </div>

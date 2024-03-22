@@ -1,4 +1,16 @@
-:root{
-    --main_color: #aa78ae;
-    --grey_color: #f0f0f0;
+@import url("https://fonts.cdnfonts.com/css/poppins");
+
+:root {
+  --main_color: #aa78ae;
+  --grey_color: #f0f0f0;
+  --text_grey: #505050;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
 }
