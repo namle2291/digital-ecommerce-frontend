@@ -12,8 +12,7 @@ module.exports = {
         poppins: "Poppins",
       },
       animation: {
-        slide_bottom:
-          "slide-bottom 0.2s ease-out both",
+        slide_bottom: "slide-bottom 0.3s ease-out both",
       },
       keyframes: {
         "slide-bottom": {
