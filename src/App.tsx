@@ -14,7 +14,7 @@ import Wishlist from "./pages/Wishlist";
 
 function App() {
   return (
-    <div className="font-poppins h-[1000px]">
+    <div className="font-poppins">
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
           <Route index path="/" element={<Home />} />
