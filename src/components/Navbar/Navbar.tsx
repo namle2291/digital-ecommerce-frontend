@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <div className="border-b">
+    <div className="border-b shadow-sm relative">
       <div className="wrapper">
         <div className="flex">
           <div className="w-[280px] relative group">

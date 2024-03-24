@@ -3,7 +3,7 @@ const firstUpperCase = (text: string) => {
 };
 
 const firstUpperCaseAll = (text: string) => {
-  if (text.includes("-")) {
+  if (text && text.includes("-")) {
     text = text
       .split("-")
       .map((item) => {

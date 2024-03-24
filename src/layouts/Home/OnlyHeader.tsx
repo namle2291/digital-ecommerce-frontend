@@ -13,9 +13,7 @@ function OnlyHeader() {
       <Navbar />
       <Breadcrumb />
       <div className="wrapper">
-        <div className="py-[20px]">
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
       <Footer />
     </div>

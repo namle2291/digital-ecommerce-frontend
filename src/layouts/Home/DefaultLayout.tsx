@@ -14,9 +14,7 @@ function DefaultLayout() {
       <Navbar />
       <Banner />
       <div className="wrapper">
-        <div className="py-[20px]">
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
       <Footer />
     </div>

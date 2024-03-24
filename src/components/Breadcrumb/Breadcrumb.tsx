@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa6";
 import {
-  firstUpperCase,
   firstUpperCaseAll,
-} from "../../utils/helpers/firstUpperCase";
+} from "../../utils/helpers/upperCase";
 
 function Breadcrumb() {
   const [category, setCategory] = useState("");
@@ -17,7 +16,7 @@ function Breadcrumb() {
   }, [location]);
 
   return (
-    <div className="py-[15px] mb-[20px] bg-grey_color">
+    <div className="py-[15px] mb-[20px] bg-[#f7f7f7]">
       <div className="wrapper">
         <h3 className="uppercase mb-[10px] font-[600] text-[18px]">
           {firstUpperCaseAll(category)}
