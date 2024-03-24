@@ -5,11 +5,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import Banner from "../../components/Banner/Banner";
 
-type DefaultLayoutType = {
-  children?: JSX.Element;
-};
-
-function DefaultLayout({ children }: DefaultLayoutType) {
+function DefaultLayout() {
   return (
     <div>
       <TopHeader />

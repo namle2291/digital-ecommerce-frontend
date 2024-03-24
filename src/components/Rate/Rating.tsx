@@ -5,10 +5,18 @@ type RateType = {
   value?: number;
   fs?: number;
   disable?: boolean;
+  color?: string;
 };
 
-const Rating = ({ value = 0, fs, disable = true }: RateType) => {
-  return <Rate value={value} style={{ fontSize: fs }} disabled={disable} />;
+const Rating = ({
+  value = 0,
+  fs,
+  disable = true,
+  color = "#f1b400",
+}: RateType) => {
+  return (
+    <Rate value={value} style={{ fontSize: fs, color }} disabled={disable} />
+  );
 };
 
 export default Rating;

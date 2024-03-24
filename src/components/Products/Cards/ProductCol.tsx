@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Rating from "../Rate/Rating";
-import { numberFormat } from "../../utils/helpers/formatPrice";
-import ActionButton from "../Buttons/ActionButton";
-import new_label from "../../assets/img/new_label.png";
-import trending_label from "../../assets/img/trending_label.png";
+import Rating from "../../Rate/Rating";
+import { numberFormat } from "../../../utils/helpers/formatPrice";
+import ActionButton from "../../Buttons/ActionButton";
+import new_label from "../../../assets/img/logo.png";
+import trending_label from "../../../assets/img/trending_label.png";
 
-type ProductCardType = {
+type ProductColType = {
   isLarge?: boolean;
 };
 
-function ProductCard({ isLarge = false }: ProductCardType) {
+function ProductCol({ isLarge = false }: ProductColType) {
   return (
     <div className="pl-[20px] group">
       <div className="p-[15px] mb-[20px] border">
@@ -57,4 +57,4 @@ function ProductCard({ isLarge = false }: ProductCardType) {
   );
 }
 
-export default ProductCard;
+export default ProductCol;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { new_arrival_tabs } from "../../utils/constants/new_arrival_tab";
-import ProductCard from "./ProductCard";
-import SectionHeading from "../Heading/SectionHeading";
+import { new_arrival_tabs } from "../../../utils/constants/new_arrival_tab";
+import ProductCol from "../Cards/ProductCol";
+import SectionHeading from "../../Heading/SectionHeading";
 
 function NewArrival() {
   const [tabActive, setTabActive] = useState<number>(0);
@@ -29,14 +29,14 @@ function NewArrival() {
         </ul>
       </div>
       <div className="grid grid-cols-4">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductCol />
+        <ProductCol />
+        <ProductCol />
+        <ProductCol />
+        <ProductCol />
+        <ProductCol />
+        <ProductCol />
+        <ProductCol />
       </div>
     </div>
   );

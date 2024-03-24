@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function ProductRow() {
+function FeatureRow() {
   return (
     <div className="pt-[30px]">
       <div className="wrapper">
@@ -38,4 +38,4 @@ function ProductRow() {
   );
 }
 
-export default ProductRow;
+export default FeatureRow;
