@@ -11,6 +11,7 @@ import Product from "./pages/Product";
 import Blog from "./pages/Blog";
 import MyAccount from "./pages/MyAccount";
 import Wishlist from "./pages/Wishlist";
+import OnlyHeader from "./layouts/Home/OnlyHeader";
 
 function App() {
   return (
@@ -18,15 +19,17 @@ function App() {
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
           <Route index path="/" element={<Home />} />
+        </Route>
+        <Route path="/" element={<OnlyHeader />}>
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/products" element={<Product />} />
+          <Route path="/contact-us" element={<Contact />} />
           <Route path="/blogs" element={<Blog />} />
+          <Route path="/products" element={<Product />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/account" element={<MyAccount />} />
-          <Route path="/*" element={<NotFound />} />
         </Route>
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </div>
   );

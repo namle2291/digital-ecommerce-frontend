@@ -16,8 +16,7 @@ function MiddleFooter() {
             </div>
             <ul>
               <li className="mb-[10px] text-[13px] flex gap-[10px] items-center">
-                <LuMapPin />{" "}
-                <span>Address: Dong Thap</span>
+                <LuMapPin /> <span>Address: Dong Thap</span>
               </li>
               <li className="mb-[10px] text-[13px] flex gap-[10px] items-center">
                 <FaPhone />

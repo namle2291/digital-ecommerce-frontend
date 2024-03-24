@@ -95,7 +95,7 @@ function Navbar() {
                 </Link>
               </li>
               <li className="py-[14px] px-[15px]">
-                <Link to={"/contact"}>
+                <Link to={"/contact-us"}>
                   <span>Contact Us</span>
                 </Link>
               </li>

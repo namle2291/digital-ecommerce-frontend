@@ -10,7 +10,7 @@ function Header() {
       <div className="wrapper flex justify-between">
         <div className="w-[40%] flex">
           <div className="mt-[5px] mr-[15px]">
-            <FaPhoneVolume className="text-[25px]" />
+            <FaPhoneVolume className="text-[24px]" />
           </div>
           <div>
             <div>SUPPORT: (+001) 1234567XXXX</div>
