@@ -18,13 +18,13 @@ function Header() {
           </div>
         </div>
         <div className="pl-[20px] w-[20%]">
-          <a href="/">
+          <Link to="/">
             <img
               src={logo}
               className="max-w-[80%]  align-middle h-auto"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="w-[40%] flex justify-end pl-[20px]">
           <div className="w-[50%] pl-[10px]">
@@ -39,15 +39,18 @@ function Header() {
               </button>
             </form>
           </div>
-          <div className="flex pl-[20px] hover:text-main_color cursor-pointer">
+          <Link
+            to={"/cart"}
+            className="flex pl-[20px] hover:text-main_color cursor-pointer"
+          >
             <div className="w-[40px] h-[40px] mr-[8px] rounded-full flex justify-center items-center bg-main_color text-white">
               <FaCartShopping className="text-[20px]" />
             </div>
-            <Link to={"/cart"}>
+            <div>
               <div className="uppercase font-semibold">Your cart</div>
-              <div className="extra">1 item</div>
-            </Link>
-          </div>
+              <div className="extra">0 item</div>
+            </div>
+          </Link>
         </div>
       </div>
     </div>
