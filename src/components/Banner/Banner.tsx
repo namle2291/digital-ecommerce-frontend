@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Slider from "react-slick";
 
 var settings = {

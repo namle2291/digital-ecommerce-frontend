@@ -13,10 +13,9 @@ module.exports = {
       },
       animation: {
         slide_bottom: "slide-bottom 0.3s ease-out both",
-        slide_bottom_right:
-          "slide_bottom_right 0.4s ease-out both",
-        slide_top_left:
-          "slide_top_left 0.4s ease-out both",
+        slide_bottom_right: "slide_bottom_right 0.4s ease-out both",
+        slide_top_left: "slide_top_left 0.4s ease-out both",
+        slide_opacity_start: "slide_opacity_start 0.5s ease-out both",
       },
       keyframes: {
         "slide-bottom": {
@@ -34,7 +33,7 @@ module.exports = {
           },
           "100%": {
             transform: "translateY(0) translateX(0)",
-            opacity: .1,
+            opacity: 0.1,
           },
         },
         slide_top_left: {
@@ -44,7 +43,15 @@ module.exports = {
           },
           "100%": {
             transform: "translateY(0) translateX(0)",
-            opacity: .1,
+            opacity: 0.1,
+          },
+        },
+        slide_opacity_start: {
+          "0%": {
+            opacity: 0,
+          },
+          "100%": {
+            opacity: 1,
           },
         },
       },

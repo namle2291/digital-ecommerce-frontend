@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import LoginModal from "../Modals/LoginModal";
+import Modal from "../Portal/Modal";
 
 function TopHeader() {
+  const [visible, setVisible] = useState(false);
+
   return (
     <div className="bg-grey_color py-[10px]">
       <div className="wrapper flex justify-between  text-[12px]">
@@ -14,12 +19,15 @@ function TopHeader() {
           >
             My Wishlist
           </Link>
-          <Link
-            to="/account"
+          <span
             className="px-[10px] cursor-pointer hover:text-main_color"
+            onClick={() => setVisible(true)}
           >
             My Account
-          </Link>
+          </span>
+          <Modal visible={visible} setVisible={setVisible}>
+            <LoginModal />
+          </Modal>
         </div>
       </div>
     </div>
