@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { Line } from "rc-progress";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 
 var settings = {
   dots: false,
   infinite: true,
-  speed: 2000,
   autoplay: true,
   autoplaySpeed: 5000,
   slidesToShow: 1,
@@ -18,6 +18,7 @@ function Banner() {
         <div className="flex gap-[20px]">
           <div className="w-[66.6%]">
             <div className="h-[541px] overflow-hidden">
+              {/* Progress bar */}
               <Slider {...settings}>
                 <div className="h-[541px]">
                   <img

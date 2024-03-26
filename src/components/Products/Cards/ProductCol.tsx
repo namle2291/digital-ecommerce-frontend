@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Rating from "../../Rate/Rating";
 import { numberFormat } from "../../../utils/helpers/formatPrice";
 import ActionButton from "../../Buttons/ActionButton";
-import new_label from "../../../assets/img/logo.png";
+import new_label from "../../../assets/img/new_label.png";
 import trending_label from "../../../assets/img/trending_label.png";
 
 type ProductColType = {
@@ -36,7 +36,9 @@ function ProductCol({ isLarge = false }: ProductColType) {
           </div>
         </div>
         <div>
-          <div className={`${isLarge ? "text-[20px]" : "text-[16px]"} mb-[6px]`}>
+          <div
+            className={`${isLarge ? "text-[20px]" : "text-[16px]"} mb-[6px]`}
+          >
             <Link to="">
               <h2>Lenovo IdeaPad 110</h2>
             </Link>
@@ -45,9 +47,7 @@ function ProductCol({ isLarge = false }: ProductColType) {
             <Rating value={5} fs={13} />
           </div>
           <div
-            className={`${
-              isLarge ? "text-[20px]" : ""
-            } text-[16px] mb-[10px]`}
+            className={`${isLarge ? "text-[20px]" : ""} text-[16px] mb-[10px]`}
           >
             <span>{numberFormat(7567956)} VND</span>
           </div>

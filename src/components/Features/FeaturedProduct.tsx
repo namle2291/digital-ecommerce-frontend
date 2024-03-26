@@ -6,7 +6,7 @@ function FeaturedProduct() {
   return (
     <div className="pb-[30px]">
       <SectionHeading text="Featured Products" />
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-4 ml-[-20px]">
         <div className="col-span-1">
           <div className="grid grid-rows-2">
             <div className="">

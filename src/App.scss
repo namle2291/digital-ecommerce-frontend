@@ -1,3 +1,7 @@
+input:focus {
+  outline-color: var(--main_color);
+}
+
 .slick-next,
 .slick-prev {
   background: black !important;

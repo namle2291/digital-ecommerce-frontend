@@ -28,7 +28,7 @@ function NewArrival() {
           })}
         </ul>
       </div>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-4 ml-[-20px]">
         <ProductCol />
         <ProductCol />
         <ProductCol />
