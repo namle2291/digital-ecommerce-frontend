@@ -12,6 +12,7 @@ import Blog from "./pages/Blog";
 import MyAccount from "./pages/MyAccount";
 import Wishlist from "./pages/Wishlist";
 import OnlyHeader from "./layouts/Home/OnlyHeader";
+import { useEffect } from "react";
 
 function App() {
   return (
