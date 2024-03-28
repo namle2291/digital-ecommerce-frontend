@@ -1,9 +1,30 @@
 export const sort_by = [
-  "Best selling",
-  "Alphabetically, A-Z",
-  "Alphabetically, Z-A",
-  "Price, low to high",
-  "Price, high to low",
-  "Date, old to new",
-  "Date, new to old",
+  {
+    title: "Best selling",
+    value: "-price",
+  },
+  {
+    title: "Alphabetically, A-Z",
+    value: "title",
+  },
+  {
+    title: "Alphabetically, Z-A",
+    value: "-title",
+  },
+  {
+    title: "Price, low to high",
+    value: "price",
+  },
+  {
+    title: "Price, high to low",
+    value: "-price",
+  },
+  {
+    title: "Date, old to new",
+    value: "createdAt",
+  },
+  {
+    title: "Date, new to old",
+    value: "-createdAt",
+  },
 ];
