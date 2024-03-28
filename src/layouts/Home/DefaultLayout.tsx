@@ -3,7 +3,7 @@ import TopHeader from "../../components/Header/TopHeader";
 import Header from "../../components/Header/Header";
 import Navbar from "../../components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
-import Banner from "../../components/Banner/Banner";
+import Banner from "../../components/Slider/Banner";
 import Footer from "../../components/Footer/Footer";
 
 function DefaultLayout() {
