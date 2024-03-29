@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Rating from '../components/Rate/Rating';
 import RadioInput from '../components/Inputs/RadioInput';
 import ProductSlider from '../components/Slider/ProductSlider';
+import { numberFormat } from '../utils/helpers/formatPrice';
 
 function ProductDetail() {
     const [sizeChecked, setSizeChecked] = useState('');
@@ -48,7 +49,8 @@ function ProductDetail() {
                 <div className="pl-[45px]">
                     <div className="mb-[20px] leading-none">
                         <span className="font-semibold text-[30px]">
-                            8.901.407,61 VND
+                            {numberFormat(Math.floor(Math.random() * 9999999))}{' '}
+                            VND
                         </span>
                     </div>
                     <div className="flex items-center gap-[5px]">

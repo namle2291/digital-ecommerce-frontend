@@ -16,7 +16,11 @@ function ProductCol({ isLarge = false }: ProductColType) {
             <div className="p-[15px] mb-[20px] border">
                 <div className="mb-[20px] relative overflow-hidden">
                     <div className="overflow-hidden relative">
-                        <Link to={`/products/${'san-pham-1'}`}>
+                        <Link
+                            to={`/products/${
+                                'san-pham-' + Math.floor(Math.random() * 9999)
+                            }`}
+                        >
                             <img
                                 src="https://digital-world-5.myshopify.com/cdn/shop/products/z1_3_300x.jpg?v=1491405547"
                                 alt="product_image"
@@ -41,7 +45,11 @@ function ProductCol({ isLarge = false }: ProductColType) {
                             isLarge ? 'text-[20px]' : 'text-[16px]'
                         } mb-[6px]`}
                     >
-                        <Link to={`/products/${'san-pham-1'}`}>
+                        <Link
+                            to={`/products/${
+                                'san-pham-' + Math.floor(Math.random() * 9999)
+                            }`}
+                        >
                             <h2>Lenovo IdeaPad 110</h2>
                         </Link>
                     </div>

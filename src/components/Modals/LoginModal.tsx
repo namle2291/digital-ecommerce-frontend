@@ -27,9 +27,9 @@ function LoginModal({ setVisible }: Props) {
         if (isLogin) {
             login('/users/login', data)
                 .then((res: any) => {
-                    const { access_token, message } = res.data;
-                    if (access_token) {
-                        dispatch(setToken(access_token));
+                    const { access_token, refresh_token, message } = res.data;
+                    if (access_token && refresh_token) {
+                        dispatch(setToken({ access_token, refresh_token }));
                         toast.success(message);
                         setVisible(false);
                     }

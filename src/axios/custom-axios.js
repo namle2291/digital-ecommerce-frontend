@@ -21,9 +21,27 @@ httpRequest.interceptors.response.use(
     function (response) {
         return response;
     },
-    function (error) {
+    async function (error) {
+        const { status, data } = error.response;
+        if (status === 401 || data.message === 'token expired!') {
+            const refresh_token = JSON.parse(
+                localStorage.getItem('refresh_token')
+            );
+            if (refresh_token) {
+                const response = await getNewToken(refresh_token);
+                const { new_token } = response.data;
+                localStorage.setItem('token', JSON.stringify(new_token));
+            }
+        }
         return Promise.reject(error);
     }
 );
+
+const getNewToken = async (refresh_token) => {
+    const result = await httpRequest.post('/users/refresh-token', {
+        refresh_token,
+    });
+    return result;
+};
 
 export default httpRequest;

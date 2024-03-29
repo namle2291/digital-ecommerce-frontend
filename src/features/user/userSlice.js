@@ -9,6 +9,7 @@ const getCurrentUser = createAsyncThunk('user/getCurrentUser', () => {
 const initialState = {
     user: JSON.parse(localStorage.getItem('user')) || null,
     token: JSON.parse(localStorage.getItem('token')) || null,
+    refresh_token: JSON.parse(localStorage.getItem('refresh_token')) || null,
 };
 
 const userSlice = createSlice({
@@ -16,8 +17,13 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setToken: (state, { payload }) => {
-            state.token = payload;
-            localStorage.setItem('token', JSON.stringify(payload));
+            state.token = payload.access_token;
+            state.refresh_token = payload.refresh_token;
+            localStorage.setItem('token', JSON.stringify(payload.access_token));
+            localStorage.setItem(
+                'refresh_token',
+                JSON.stringify(payload.refresh_token)
+            );
         },
         logout: (state) => {
             localStorage.removeItem('user');
