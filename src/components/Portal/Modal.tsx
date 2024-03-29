@@ -4,11 +4,12 @@ import Portal from "./Portal";
 
 type Props = {
   visible?: boolean;
-  setVisible: Dispatch<SetStateAction<boolean>>;
+  setVisible?: any;
   children?: JSX.Element[] | JSX.Element;
 };
 
 function Modal({ visible, setVisible, children }: Props) {
+  
   useEffect(() => {
     if (visible) {
       document.body.style.overflow = "hidden";

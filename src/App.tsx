@@ -12,12 +12,14 @@ import Blog from './pages/Blog';
 import MyAccount from './pages/MyAccount';
 import Wishlist from './pages/Wishlist';
 import OnlyHeader from './layouts/Home/OnlyHeader';
-import { useEffect } from 'react';
 import ProductDetail from './pages/ProductDetail';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     return (
         <div className="font-poppins">
+            <ToastContainer />
             <Routes>
                 <Route path="/" element={<DefaultLayout />}>
                     <Route index path="/" element={<Home />} />
