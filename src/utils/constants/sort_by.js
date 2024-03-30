@@ -5,11 +5,11 @@ export const sort_by = [
   },
   {
     title: "Alphabetically, A-Z",
-    value: "title",
+    value: "name",
   },
   {
     title: "Alphabetically, Z-A",
-    value: "-title",
+    value: "-name",
   },
   {
     title: "Price, low to high",

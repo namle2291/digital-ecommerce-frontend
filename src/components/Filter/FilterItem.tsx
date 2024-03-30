@@ -3,6 +3,8 @@ import { FaAngleDown } from 'react-icons/fa6';
 import { colors_filter } from '../../utils/constants/colors';
 import useDebounce from '../../hooks/useDebounce';
 import { useSearchParams } from 'react-router-dom';
+import { getProductHighestPrice } from '../../apis/services/productService';
+import { numberFormat } from '../../utils/helpers/formatPrice';
 
 type Props = {
     title?: string;
@@ -13,46 +15,17 @@ type Props = {
 
 function FilterItem({ title, type = 'input', active, setActive }: Props) {
     const [colorSelected, setColorSelected] = useState<any[]>([]);
+    const [priceHighest, setPriceHighest] = useState<number>(0);
+
     const [price, setPrice] = useState<any>({
         from: '',
         to: '',
     });
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    const priceFromDebounce = useDebounce(+price.from, 500);
+    const priceToDebounce = useDebounce(+price.to, 500);
 
-    useEffect(() => {
-        if (colorSelected.length > 0) {
-            searchParams.set('color', colorSelected.join(','));
-        } else {
-            searchParams.delete('color');
-        }
-        setSearchParams(searchParams);
-    }, [colorSelected]);
-
-    const price_from = useDebounce(+price.from, 500);
-    const price_to = useDebounce(+price.to, 500);
-
-    useEffect(() => {
-        const data: any = {};
-        if (Number(price.from) > 0) data['price[gte]'] = +price.from;
-        if (Number(price.to) > 0) data['price[lte]'] = +price.to;
-
-        if (price_from || price_to) {
-            data['price[gte]'] &&
-                searchParams.set('price[gte]', data['price[gte]']);
-            data['price[lte]'] &&
-                searchParams.set('price[lte]', data['price[lte]']);
-        }
-
-        if (!price_from) {
-            searchParams.delete('price[gte]');
-        }
-        if (!price_to) {
-            searchParams.delete('price[lte]');
-        }
-
-        setSearchParams(searchParams);
-    }, [price_from, price_to]);
+    const colorDebounce = useDebounce(colorSelected, 500);
 
     const handleSelectColor = (color: any) => {
         setColorSelected((prev) => {
@@ -62,6 +35,54 @@ function FilterItem({ title, type = 'input', active, setActive }: Props) {
                 : [...prev, color];
         });
     };
+
+    const fetchProductHighestPrice = async () => {
+        const result = await getProductHighestPrice('/products', {
+            sort: '-price',
+            limit: 1,
+        });
+
+        if (result.status === 200) {
+            setPriceHighest(result.data.data[0].price);
+        }
+    };
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        if (colorSelected.length > 0) {
+            searchParams.set('color', colorDebounce.join(','));
+        } else {
+            searchParams.delete('color');
+        }
+        setSearchParams(searchParams);
+    }, [colorDebounce]);
+
+    useEffect(() => {
+        const data: any = {};
+        if (Number(price.from) > 0) data['price[gte]'] = +price.from;
+        if (Number(price.to) > 0) data['price[lte]'] = +price.to;
+
+        if (priceFromDebounce || priceToDebounce) {
+            data['price[gte]'] &&
+                searchParams.set('price[gte]', data['price[gte]']);
+            data['price[lte]'] &&
+                searchParams.set('price[lte]', data['price[lte]']);
+        }
+
+        if (!priceFromDebounce) {
+            searchParams.delete('price[gte]');
+        }
+        if (!priceToDebounce) {
+            searchParams.delete('price[lte]');
+        }
+
+        setSearchParams(searchParams);
+    }, [priceFromDebounce, priceToDebounce]);
+
+    useEffect(() => {
+        fetchProductHighestPrice();
+    }, []);
 
     return (
         <div className="popup-btn relative px-[15px] h-[45px] border mr-[.5rem] cursor-pointer">
@@ -82,7 +103,11 @@ function FilterItem({ title, type = 'input', active, setActive }: Props) {
                             <>
                                 <div className="py-[15px] px-[20px] flex justify-between items-center border-b">
                                     <span>
-                                        The highest price is 13.627.376,16 VND
+                                        The highest price is{' '}
+                                        <span>
+                                            {numberFormat(priceHighest)}
+                                        </span>{' '}
+                                        VND
                                     </span>
                                     <span
                                         className="underline underline-offset-[3px]"
@@ -99,12 +124,12 @@ function FilterItem({ title, type = 'input', active, setActive }: Props) {
                                 <div className="border px-[20px] py-[15px] grid grid-cols-2 gap-[10px] w-full">
                                     <div>
                                         <label
-                                            htmlFor="price_from"
+                                            htmlFor="priceFromDebounce"
                                             className="flex items-center gap-[10px]"
                                         >
                                             <span>$</span>
                                             <input
-                                                id="price_from"
+                                                id="priceFromDebounce"
                                                 type="number"
                                                 className="h-[44px] flex-1 pl-[10px] w-[50%]"
                                                 placeholder="From"
@@ -121,12 +146,12 @@ function FilterItem({ title, type = 'input', active, setActive }: Props) {
                                     </div>
                                     <div>
                                         <label
-                                            htmlFor="price_to"
+                                            htmlFor="priceToDebounce"
                                             className="flex items-center gap-[10px]"
                                         >
                                             <span>$</span>
                                             <input
-                                                id="price_to"
+                                                id="priceToDebounce"
                                                 type="number"
                                                 className="h-[44px] flex-1 pl-[10px] w-[50%]"
                                                 placeholder="To"

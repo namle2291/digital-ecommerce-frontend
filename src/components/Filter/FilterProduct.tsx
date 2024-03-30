@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import FilterItem from './FilterItem';
 import Select from './Select';
 import { sort_by } from '../../utils/constants/sort_by';
@@ -7,22 +7,6 @@ import useNavigateSearch from '../../hooks/useNavigateSearch';
 
 function FilterProduct() {
     const [active, setActive] = useState('');
-
-    const navigateSearch = useNavigateSearch();
-
-    const [params] = useSearchParams();
-
-    useEffect(() => {
-        let param = [];
-
-        for (let entry of params.entries()) {
-            param.push(entry);
-        }
-        let queries: any = {};
-        for (let i of param) {
-            queries[i[0]] = i[1];
-        }
-    }, [params]);
 
     useEffect(() => {
         const handleBlur = (event: any) => {
@@ -72,4 +56,4 @@ function FilterProduct() {
     );
 }
 
-export default FilterProduct;
+export default memo(FilterProduct);
