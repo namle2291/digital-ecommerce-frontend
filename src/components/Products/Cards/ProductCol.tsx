@@ -17,7 +17,7 @@ function ProductCol({ product, isLarge = false }: ProductColType) {
             <div className="p-[15px] mb-[20px] border">
                 <div className="mb-[20px] relative overflow-hidden">
                     <div className="overflow-hidden relative">
-                        <Link to={`/products/${product?.slug}`}>
+                        <Link to={`/products/${product?._id}/${product?.slug}`}>
                             <img
                                 src={product?.thumbnail}
                                 alt="product_image"
@@ -42,7 +42,7 @@ function ProductCol({ product, isLarge = false }: ProductColType) {
                             isLarge ? 'text-[20px]' : 'text-[16px]'
                         } mb-[6px]`}
                     >
-                        <Link to={`/products/${product?.slug}`}>
+                        <Link to={`/products/${product?._id}/${product?.slug}`}>
                             <h2>{product?.name}</h2>
                         </Link>
                     </div>

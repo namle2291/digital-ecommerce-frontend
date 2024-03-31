@@ -1,133 +1,126 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../components/Rate/Rating';
 import RadioInput from '../components/Inputs/RadioInput';
-import ProductSlider from '../components/Slider/ProductSlider';
+import RelatedProduct from '../components/Slider/RelatedProduct';
 import { numberFormat } from '../utils/helpers/formatPrice';
+import { getProductById } from '../apis/services/productService';
 
 function ProductDetail() {
-    const [sizeChecked, setSizeChecked] = useState('');
-    const [colorChecked, setColorChecked] = useState('');
+    const [product, setProduct] = useState<any>({});
+    const [thumbnail, setThumbnail] = useState<string>('');
 
-    const { slug } = useParams();
+    const [checked, setChecked] = useState<any>({});
+
+    const { id } = useParams();
+
+    const fetchProductById = async (id: any) => {
+        const result = await getProductById(`/products/${id}`);
+        if (result.status === 200) {
+            const { thumbnail, variants } = result.data.data;
+            setProduct(result.data.data);
+            setThumbnail(thumbnail);
+            // set variants
+            if (variants.length > 0) {
+                variants?.map((v: any) => {
+                    let name = v.label.toLowerCase();
+                    let value = v.variants[0]['value'];
+                    setChecked((prev: any) => ({ ...prev, [name]: value }));
+                });
+            }
+        }
+    };
+
+    const handleCheck = useCallback((key: any, value: any) => {
+        setChecked((prev: any) => ({ ...prev, [key]: value }));
+    }, []);
 
     useEffect(() => {
-        // console.log(slug);
-    }, [slug]);
+        fetchProductById(id);
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }, [id]);
 
     useEffect(() => {
-        console.log(sizeChecked, colorChecked);
-    }, [sizeChecked, colorChecked]);
+        // console.log('>>> checked: ', checked);
+    }, [checked]);
+
+    if (Object.keys(product).length <= 0) return <h2>Loading...</h2>;
 
     return (
         <div>
             <div className="grid grid-cols-2">
                 <div className="flex flex-row">
-                    <div className="w-[16%]">
-                        <ul className="flex flex-col gap-[5px]">
-                            {Array(4)
-                                .fill(null)
-                                .map((_, index) => (
-                                    <li key={index} className="cursor-pointer">
-                                        <img
-                                            src="https://digital-world-5.myshopify.com/cdn/shop/products/SS7_1_1024x1024.jpg?v=1491405588"
-                                            alt=""
-                                            className="w-full object-cover"
-                                        />
-                                    </li>
-                                ))}
+                    <div className="w-[20%]">
+                        <ul className="flex flex-col">
+                            {product &&
+                                product?.images?.map(
+                                    (img: any, index: number) => (
+                                        <li
+                                            key={index}
+                                            className="border my-[5px] p-[5px] cursor-pointer w-[94px] h-[94px] overflow-hidden"
+                                            onClick={() => setThumbnail(img)}
+                                        >
+                                            <img
+                                                src={img}
+                                                alt=""
+                                                className="w-full h-full object-contain"
+                                            />
+                                        </li>
+                                    )
+                                )}
                         </ul>
                     </div>
-                    <div className="w-[83%] border mb-[30px] pl-[20px]">
+                    <div className="w-[80%] border mb-[30px] p-[10px] h-[450px]">
                         <img
-                            src="https://digital-world-5.myshopify.com/cdn/shop/products/SS7_1_1024x1024.jpg?v=1491405588"
-                            alt=""
-                            className="w-full object-cover"
+                            src={thumbnail}
+                            alt="product thumbnail"
+                            className="w-full h-full object-contain"
                         />
                     </div>
                 </div>
                 <div className="pl-[45px]">
                     <div className="mb-[20px] leading-none">
                         <span className="font-semibold text-[30px]">
-                            {numberFormat(Math.floor(Math.random() * 9999999))}{' '}
-                            VND
+                            {numberFormat(product?.price)} VND
                         </span>
                     </div>
                     <div className="flex items-center gap-[5px]">
                         <Rating value={5} fs={16} />
-                        <span>1 review</span>
+                        <span>{product?.raitings.length} review</span>
                     </div>
                     <div className="mt-[20px] mb-[10px]">
                         <ul className="list-disc list-inside flex flex-col gap-[5px]">
-                            <li>Technology: GSM / CDMA / HSPA / EVDO / LTE</li>
-                            <li>Dimensions: 240 x 169.5 x 6.1 mm</li>
-                            <li>Weight: 437 g</li>
-                            <li>Display: LED-backlit IPS LCD 9.7 inches</li>
-                            <li>Resolution: 1536 x 2048</li>
-                            <li>OS: iOS 8.1</li>
-                            <li>Chipset: Apple A8X</li>
-                            <li>CPU: Triple-core 1.5 GHz Typhoon</li>
-                            <li>Internal: 16/32/64/128 GB, 2 GB RAM</li>
-                            <li>Camera: 8 MP, f/2.4 - 1.2 MP, f/2.2</li>
+                            {product?.description.map(
+                                (dsc: any, index: number) => (
+                                    <li key={index}>{dsc}</li>
+                                )
+                            )}
                         </ul>
                     </div>
                     <div>
-                        <div className="flex items-center">
-                            <span className="font-semibold min-w-[70px] my-[10px]">
-                                Size
-                            </span>
-                            <div className="p-[10px] flex">
-                                <RadioInput
-                                    id="size-8gb"
-                                    checked={sizeChecked}
-                                    setChecked={setSizeChecked}
-                                    label="8GB"
-                                    name="size"
-                                />
-                                <RadioInput
-                                    id="size-16gb"
-                                    checked={sizeChecked}
-                                    setChecked={setSizeChecked}
-                                    label="16GB"
-                                    name="size"
-                                />
-                                <RadioInput
-                                    id="size-32gb"
-                                    checked={sizeChecked}
-                                    setChecked={setSizeChecked}
-                                    label="32GB"
-                                    name="size"
-                                />
-                            </div>
-                        </div>
-                        <div className="flex items-center">
-                            <span className="font-semibold min-w-[70px] my-[10px]">
-                                Color
-                            </span>
-                            <div className="p-[10px] flex">
-                                <RadioInput
-                                    id="color-red"
-                                    checked={colorChecked}
-                                    setChecked={setColorChecked}
-                                    label="Red"
-                                    name="color"
-                                />
-                                <RadioInput
-                                    id="color-green"
-                                    checked={colorChecked}
-                                    setChecked={setColorChecked}
-                                    label="Green"
-                                    name="color"
-                                />
-                                <RadioInput
-                                    id="color-blue"
-                                    checked={colorChecked}
-                                    setChecked={setColorChecked}
-                                    label="Blue"
-                                    name="color"
-                                />
-                            </div>
-                        </div>
+                        {product?.variants?.map(
+                            (variant: any, index: number) => (
+                                <div key={index} className="flex items-center">
+                                    <span className="font-semibold min-w-[70px] my-[10px]">
+                                        {variant.label}
+                                    </span>
+                                    <div key={index} className="p-[10px] flex">
+                                        {variant?.variants?.map(
+                                            (item: any, index: number) => (
+                                                <RadioInput
+                                                    key={index}
+                                                    id={`${variant.label}-${item.value}`}
+                                                    label={item.value}
+                                                    name={variant.label.toLowerCase()}
+                                                    checked={checked}
+                                                    setChecked={handleCheck}
+                                                />
+                                            )
+                                        )}
+                                    </div>
+                                </div>
+                            )
+                        )}
                         <div className="uppercase bg-main_color text-center cursor-pointer text-white font-[700] py-[11px] px-[15px]">
                             Add To Cart
                         </div>
@@ -135,7 +128,7 @@ function ProductDetail() {
                 </div>
             </div>
             <div className="mt-[30px] pt-[50px] border-t-2 border-main_color">
-                <ProductSlider />
+                <RelatedProduct priceFrom={product?.price} />
             </div>
         </div>
     );

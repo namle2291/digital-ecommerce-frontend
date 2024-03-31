@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 type Props = {
     className?: string;
-    name?: string;
+    name?: any;
     isHidden?: boolean;
     label?: string;
     id?: string;
-    checked?: string;
+    checked?: any;
     setChecked?: any;
 };
 
@@ -19,29 +19,17 @@ function RadioInput({
     checked,
     setChecked,
 }: Props) {
-    const handleChoose = (event: any) => {
-        setChecked(event.target.value);
-    };
-
     return (
         <label
             htmlFor={id}
             className={`${className} border ${
-                checked === label ? 'border-main_color' : ''
+                checked[name] === label ? 'border-main_color' : ''
             } cursor-pointer mx-[5px] py-[9px] px-[11px]`}
+            onClick={() => setChecked(name, label)}
         >
             {label}
-
-            <input
-                value={label}
-                id={id}
-                type="radio"
-                name={name}
-                hidden={isHidden}
-                onChange={handleChoose}
-            />
         </label>
     );
 }
 
-export default RadioInput;
+export default memo(RadioInput);

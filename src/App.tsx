@@ -25,7 +25,7 @@ function App() {
                     <Route index path="/" element={<Home />} />
                 </Route>
                 <Route path="/" element={<OnlyHeader />}>
-                    <Route path="/products/:slug" element={<ProductDetail />} />
+                    <Route path="/products/:id/:slug" element={<ProductDetail />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/contact-us" element={<Contact />} />

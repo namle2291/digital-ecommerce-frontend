@@ -27,6 +27,8 @@ function Product() {
             queries[i[0]] = i[1];
         }
 
+        console.log(queries)
+
         fetchProducts(queries);
     }, [params]);
 
@@ -36,7 +38,7 @@ function Product() {
                 <FilterProduct />
             </div>
             <div className="grid grid-cols-4 ml-[-20px]">
-                {products &&
+                {products.length > 0 &&
                     products.map((product, index) => (
                         <ProductCol key={index} product={product} />
                     ))}
